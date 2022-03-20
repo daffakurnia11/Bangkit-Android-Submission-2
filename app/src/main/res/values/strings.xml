@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Github Users</string>
+    <string name="settings_text">Settings</string>
+    <string name="search_placeholder">Search user</string>
 </resources>
