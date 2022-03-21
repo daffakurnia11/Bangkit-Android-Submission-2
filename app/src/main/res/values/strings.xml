@@ -3,4 +3,7 @@
     <string name="settings_text">Settings</string>
     <string name="search_placeholder">Search user</string>
     <string name="text_user_avatar">User Avatar</string>
+
+    <string name="tab_followers">Followers</string>
+    <string name="tab_following">Following</string>
 </resources>

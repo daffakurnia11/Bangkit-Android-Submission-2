@@ -1,5 +1,6 @@
 package me.daffakurnia.android.githubusers
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,6 +32,9 @@ class ListUserAdapter(private val dataUser: ArrayList<DataUser>) :
             .load(avatar_url)
             .circleCrop()
             .into(holder.imgUser)
+        holder.imgUser.setOnClickListener {
+            holder.itemView.context.startActivity(Intent(holder.itemView.context, DetailActivity::class.java))
+        }
     }
 
     override fun getItemCount(): Int = dataUser.size
