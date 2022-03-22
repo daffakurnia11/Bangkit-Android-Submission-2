@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity() {
                 userList.add(
                     DataUser(
                         item?.login,
-                        item?.id,
+                        item?.htmlUrl,
                         item?.avatarUrl
                     )
                 )

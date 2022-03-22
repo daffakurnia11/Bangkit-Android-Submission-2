@@ -15,7 +15,7 @@ class ListUserAdapter(private val dataUser: ArrayList<DataUser>) :
     class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var imgUser: ImageView = itemView.findViewById(R.id.img_user)
         var textUsername: TextView = itemView.findViewById(R.id.text_username)
-        var textId: TextView = itemView.findViewById(R.id.text_user_id)
+        var textUrl: TextView = itemView.findViewById(R.id.text_user_url)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
@@ -25,15 +25,17 @@ class ListUserAdapter(private val dataUser: ArrayList<DataUser>) :
     }
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
-        val (login, id, avatar_url) = dataUser[position]
+        val (login, url, avatar_url) = dataUser[position]
         holder.textUsername.text = login
-        holder.textId.text = id.toString()
+        holder.textUrl.text = url
         Glide.with(holder.imgUser.context)
             .load(avatar_url)
             .circleCrop()
             .into(holder.imgUser)
         holder.imgUser.setOnClickListener {
-            holder.itemView.context.startActivity(Intent(holder.itemView.context, DetailActivity::class.java))
+            val intent = Intent(holder.itemView.context, DetailActivity::class.java)
+            intent.putExtra(DetailActivity.USERNAME, login)
+            holder.itemView.context.startActivity(intent)
         }
     }
 
