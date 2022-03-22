@@ -26,7 +26,10 @@ class DetailActivity : AppCompatActivity() {
 
         getDetailUser(userDetail)
 
-        val sectionPagerAdapter = SectionsPagerAdapter(this)
+        val bundle = Bundle()
+        bundle.putString(USERNAME, userDetail)
+
+        val sectionPagerAdapter = SectionsPagerAdapter(this, bundle)
         binding.viewPager.adapter = sectionPagerAdapter
         TabLayoutMediator(binding.tabs, binding.viewPager) { tab, position ->
             tab.text = resources.getString(TAB_TITLES[position])
