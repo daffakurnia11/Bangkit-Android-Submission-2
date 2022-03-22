@@ -3,6 +3,7 @@ package me.daffakurnia.android.githubusers
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.annotation.StringRes
 import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayoutMediator
@@ -40,6 +41,7 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun getDetailUser(userDetail: String?) {
+        binding.progressBar.visibility = View.VISIBLE
         val client = ApiConfig.getApiService().getDetail(userDetail.toString())
         client.enqueue(object : Callback<UserDetailResponse> {
             override fun onResponse(
@@ -47,6 +49,7 @@ class DetailActivity : AppCompatActivity() {
                 response: Response<UserDetailResponse>
             ) {
                 if (response.isSuccessful) {
+                    binding.progressBar.visibility = View.INVISIBLE
                     val responseBody = response.body()
                     if (responseBody != null) {
                         Glide.with(this@DetailActivity)

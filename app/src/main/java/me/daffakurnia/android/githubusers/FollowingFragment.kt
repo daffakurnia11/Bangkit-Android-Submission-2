@@ -1,11 +1,13 @@
 package me.daffakurnia.android.githubusers
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import me.daffakurnia.android.githubusers.API.ApiConfig
 import me.daffakurnia.android.githubusers.DataClass.DataUser
@@ -38,6 +40,7 @@ class FollowingFragment : Fragment() {
     }
 
     private fun getFollowing(username: String) {
+        showProgressbar(true)
         val client = ApiConfig.getApiService().getFollowing(username)
         client.enqueue(object : Callback<List<UserFollowingResponse>> {
             override fun onResponse(
@@ -45,6 +48,7 @@ class FollowingFragment : Fragment() {
                 response: Response<List<UserFollowingResponse>>
             ) {
                 if (response.isSuccessful) {
+                    showProgressbar(false)
                     val responseBody = response.body()
                     if (responseBody != null) {
                         getFollowingData(responseBody)
@@ -56,6 +60,14 @@ class FollowingFragment : Fragment() {
                 Log.d("Failure", t.message, t)
             }
         })
+    }
+
+    private fun showProgressbar(state: Boolean) {
+        if (state) {
+            binding.progressBar.visibility = View.VISIBLE
+        } else {
+            binding.progressBar.visibility = View.INVISIBLE
+        }
     }
 
     private fun getFollowingData(responseBody: List<UserFollowingResponse>) {
@@ -74,7 +86,13 @@ class FollowingFragment : Fragment() {
 
         binding.apply {
             listFollowing.setHasFixedSize(true)
-            listFollowing.layoutManager = LinearLayoutManager(activity)
+            if (activity?.resources?.configuration?.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                val layoutManager = GridLayoutManager(activity, 2)
+                listFollowing.layoutManager = layoutManager
+            } else {
+                val layoutManager = LinearLayoutManager(activity)
+                listFollowing.layoutManager = layoutManager
+            }
             listFollowing.adapter = adapter
         }
     }

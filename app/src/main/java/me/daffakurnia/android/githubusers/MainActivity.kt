@@ -2,11 +2,14 @@ package me.daffakurnia.android.githubusers
 
 import android.app.SearchManager
 import android.content.Context
+import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
+import android.view.View
 import androidx.appcompat.widget.SearchView
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import me.daffakurnia.android.githubusers.API.ApiConfig
@@ -29,13 +32,19 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val layoutManager = LinearLayoutManager(this)
-        binding.listUsers.layoutManager = layoutManager
+        if (applicationContext.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            val layoutManager = GridLayoutManager(this, 2)
+            binding.listUsers.layoutManager = layoutManager
+        } else {
+            val layoutManager = LinearLayoutManager(this)
+            binding.listUsers.layoutManager = layoutManager
+        }
 
         findUsers()
     }
 
     private fun findUsers() {
+        showProgressbar(true)
         val client = ApiConfig.getApiService().getAccount(USERNAME)
         client.enqueue(object : Callback<UserSearchResponse> {
             override fun onResponse(
@@ -43,6 +52,7 @@ class MainActivity : AppCompatActivity() {
                 response: Response<UserSearchResponse>
             ) {
                 if (response.isSuccessful) {
+                    showProgressbar(false)
                     val responseBody = response.body()
                     if (responseBody != null) {
                         setSearchData(responseBody.items)
@@ -57,6 +67,14 @@ class MainActivity : AppCompatActivity() {
             }
 
         })
+    }
+
+    private fun showProgressbar(state: Boolean) {
+        if (state) {
+            binding.progressBar.visibility = View.VISIBLE
+        } else {
+            binding.progressBar.visibility = View.INVISIBLE
+        }
     }
 
     private fun setSearchData(items: List<ItemsItem?>?) {
