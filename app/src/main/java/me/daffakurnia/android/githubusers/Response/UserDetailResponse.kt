@@ -1,4 +1,4 @@
-package me.daffakurnia.android.githubusers
+package me.daffakurnia.android.githubusers.Response
 
 import com.google.gson.annotations.SerializedName
 

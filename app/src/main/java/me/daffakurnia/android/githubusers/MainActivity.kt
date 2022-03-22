@@ -7,9 +7,12 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import androidx.appcompat.widget.SearchView
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import me.daffakurnia.android.githubusers.API.ApiConfig
+import me.daffakurnia.android.githubusers.DataClass.DataUser
+import me.daffakurnia.android.githubusers.Response.ItemsItem
+import me.daffakurnia.android.githubusers.Response.UserSearchResponse
 import me.daffakurnia.android.githubusers.databinding.ActivityMainBinding
 import retrofit2.Call
 import retrofit2.Callback

@@ -6,6 +6,8 @@ import android.util.Log
 import androidx.annotation.StringRes
 import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayoutMediator
+import me.daffakurnia.android.githubusers.API.ApiConfig
+import me.daffakurnia.android.githubusers.Response.UserDetailResponse
 import me.daffakurnia.android.githubusers.databinding.ActivityDetailBinding
 import retrofit2.Call
 import retrofit2.Callback
