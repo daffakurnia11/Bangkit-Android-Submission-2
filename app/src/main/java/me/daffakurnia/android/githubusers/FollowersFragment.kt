@@ -18,7 +18,6 @@ import retrofit2.Response
 class FollowersFragment : Fragment() {
 
     private lateinit var binding: FragmentFollowersBinding
-    private lateinit var adapter: ListUserAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

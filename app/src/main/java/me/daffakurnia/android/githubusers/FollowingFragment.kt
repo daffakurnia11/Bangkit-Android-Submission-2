@@ -1,33 +1,23 @@
 package me.daffakurnia.android.githubusers
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import me.daffakurnia.android.githubusers.API.ApiConfig
+import me.daffakurnia.android.githubusers.DataClass.DataUser
+import me.daffakurnia.android.githubusers.Response.UserFollowingResponse
+import me.daffakurnia.android.githubusers.databinding.FragmentFollowingBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [FollowingFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class FollowingFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var binding: FragmentFollowingBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,23 +27,59 @@ class FollowingFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_following, container, false)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment FollowingFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            FollowingFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val username = arguments?.getString(FollowingFragment.USERNAME).toString()
+
+        binding = FragmentFollowingBinding.bind(view)
+
+        getFollowing(username)
+    }
+
+    private fun getFollowing(username: String) {
+        val client = ApiConfig.getApiService().getFollowing(username)
+        client.enqueue(object : Callback<List<UserFollowingResponse>> {
+            override fun onResponse(
+                call: Call<List<UserFollowingResponse>>,
+                response: Response<List<UserFollowingResponse>>
+            ) {
+                if (response.isSuccessful) {
+                    val responseBody = response.body()
+                    if (responseBody != null) {
+                        getFollowingData(responseBody)
+                    }
                 }
             }
+
+            override fun onFailure(call: Call<List<UserFollowingResponse>>, t: Throwable) {
+                Log.d("Failure", t.message, t)
+            }
+        })
+    }
+
+    private fun getFollowingData(responseBody: List<UserFollowingResponse>) {
+        val userList = ArrayList<DataUser>()
+
+        for (item in responseBody) {
+            userList.add(
+                DataUser(
+                    item.login,
+                    item.htmlUrl,
+                    item.avatarUrl
+                )
+            )
+        }
+        val adapter = ListUserAdapter(userList)
+
+        binding.apply {
+            listFollowing.setHasFixedSize(true)
+            listFollowing.layoutManager = LinearLayoutManager(activity)
+            listFollowing.adapter = adapter
+        }
+    }
+
+    companion object {
+        private var USERNAME = "username"
     }
 }
