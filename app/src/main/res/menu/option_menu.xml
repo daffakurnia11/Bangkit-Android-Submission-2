@@ -6,12 +6,12 @@
         android:icon="@drawable/ic_baseline_search_24"
         android:title="@string/search_placeholder"
         app:actionViewClass="androidx.appcompat.widget.SearchView"
-        app:showAsAction="collapseActionView|always" />
+        app:showAsAction="collapseActionView|ifRoom" />
     <group android:menuCategory="container">
         <item
             android:id="@+id/first_menu"
             android:icon="@drawable/ic_baseline_settings_24"
             android:title="@string/settings_text"
-            app:showAsAction="always" />
+            app:showAsAction="ifRoom" />
     </group>
 </menu>

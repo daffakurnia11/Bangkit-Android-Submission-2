@@ -11,7 +11,6 @@ import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import me.daffakurnia.android.githubusers.API.ApiConfig
 import me.daffakurnia.android.githubusers.DataClass.DataUser
 import me.daffakurnia.android.githubusers.Response.ItemsItem
@@ -24,8 +23,6 @@ import retrofit2.Response
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var recyclerUser: RecyclerView
-    private var list = ArrayList<DataUser>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
