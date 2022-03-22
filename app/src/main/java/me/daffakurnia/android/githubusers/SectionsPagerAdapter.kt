@@ -5,7 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 
-class SectionsPagerAdapter(activity: AppCompatActivity, data: Bundle) : FragmentStateAdapter(activity) {
+class SectionsPagerAdapter(activity: AppCompatActivity, data: Bundle) :
+    FragmentStateAdapter(activity) {
 
     private var fragmentBundle: Bundle = data
 
