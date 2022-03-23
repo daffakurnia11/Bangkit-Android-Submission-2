@@ -38,7 +38,7 @@
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toEndOf="@+id/img_user"
             card_view:layout_constraintTop_toTopOf="@id/img_user"
-            tools:text="Default Username" />
+            tools:text="@string/default_username" />
 
         <TextView
             android:id="@+id/text_user_url"
@@ -53,7 +53,7 @@
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toEndOf="@+id/img_user"
             card_view:layout_constraintTop_toBottomOf="@+id/text_username"
-            tools:text="Default Name" />
+            tools:text="@string/default_name" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

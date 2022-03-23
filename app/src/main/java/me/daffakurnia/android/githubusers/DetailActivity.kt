@@ -36,7 +36,7 @@ class DetailActivity : AppCompatActivity() {
             tab.text = resources.getString(TAB_TITLES[position])
         }.attach()
 
-        supportActionBar?.title = "Detail User"
+        supportActionBar?.title = resources.getString(R.string.title_detail_activity)
         supportActionBar?.elevation = 0f
     }
 
@@ -58,6 +58,10 @@ class DetailActivity : AppCompatActivity() {
                             .into(binding.imgDetailUser)
                         binding.textDetailUsername.text = responseBody.login
                         binding.textDetailName.text = responseBody.name
+                        binding.textDetailLocation.text = (responseBody.location
+                            ?: resources.getString(R.string.default_location)).toString()
+                        binding.textDetailCompany.text = (responseBody.company
+                            ?: resources.getString(R.string.default_company)).toString()
                         binding.textNumberFollowers.text = responseBody.followers.toString()
                         binding.textNumberFollowing.text = responseBody.following.toString()
                         binding.textNumberRepository.text = responseBody.publicRepos.toString()

@@ -4,9 +4,16 @@
     <string name="search_placeholder">Search user</string>
     <string name="text_user_avatar">User Avatar</string>
 
+    <string name="title_detail_activity">Detail User</string>
+
     <string name="tab_followers">Followers</string>
     <string name="tab_following">Following</string>
     <string name="text_followers">Followers</string>
     <string name="text_following">Following</string>
     <string name="text_repositories">Repositories</string>
+    <string name="default_username">Default Username</string>
+    <string name="default_name">Default Name</string>
+    <string name="default_location">No Location</string>
+    <string name="default_company">No Company</string>
+    <string name="default_value">00</string>
 </resources>

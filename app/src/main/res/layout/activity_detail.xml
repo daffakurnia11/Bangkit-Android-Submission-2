@@ -49,7 +49,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/img_detail_user"
-            tools:text="Default Username" />
+            tools:text="@string/default_username" />
 
         <TextView
             android:id="@+id/text_detail_name"
@@ -63,21 +63,48 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_detail_username"
-            tools:text="Default URL" />
+            tools:text="@string/default_name" />
+
+        <TextView
+            android:id="@+id/text_detail_location"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_detail_name"
+            tools:text="@string/default_location" />
+
+        <TextView
+            android:id="@+id/text_detail_company"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_detail_location"
+            tools:text="@string/default_company" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:gravity="center_horizontal"
-            app:layout_constraintTop_toBottomOf="@id/text_detail_name">
+            app:layout_constraintTop_toBottomOf="@id/text_detail_company">
 
             <TextView
                 android:id="@+id/text_number_followers"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
-                tools:text="00" />
+                tools:text="@string/default_value" />
 
             <TextView
                 android:id="@+id/text_followers"
@@ -93,7 +120,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:textColor="@color/white"
-                tools:text="00" />
+                tools:text="@string/default_value" />
 
             <TextView
                 android:id="@+id/text_following"
@@ -109,7 +136,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:textColor="@color/white"
-                tools:text="00" />
+                tools:text="@string/default_value" />
 
             <TextView
                 android:id="@+id/text_repository"
