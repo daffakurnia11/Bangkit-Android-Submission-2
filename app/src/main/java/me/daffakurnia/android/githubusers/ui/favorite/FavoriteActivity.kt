@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import me.daffakurnia.android.githubusers.R
 import me.daffakurnia.android.githubusers.databinding.ActivityFavoriteBinding
 import me.daffakurnia.android.githubusers.helper.ViewModelFactory
-import me.daffakurnia.android.githubusers.ui.main.ListUserAdapter
 
 class FavoriteActivity : AppCompatActivity() {
 

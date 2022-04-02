@@ -3,17 +3,13 @@ package me.daffakurnia.android.githubusers.ui.favorite
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import me.daffakurnia.android.githubusers.R
 import me.daffakurnia.android.githubusers.database.Favorite
 import me.daffakurnia.android.githubusers.databinding.ItemUserBinding
 import me.daffakurnia.android.githubusers.helper.FavoriteDiffCallback
 import me.daffakurnia.android.githubusers.ui.detail.DetailActivity
-import me.daffakurnia.android.githubusers.ui.main.ListUserAdapter
 
 class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.FavoriteViewHolder>() {
     private val listFavorites = ArrayList<Favorite>()

@@ -2,7 +2,6 @@ package me.daffakurnia.android.githubusers.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import me.daffakurnia.android.githubusers.dataclass.DataUser
 
 @Dao
 interface FavoriteDao {

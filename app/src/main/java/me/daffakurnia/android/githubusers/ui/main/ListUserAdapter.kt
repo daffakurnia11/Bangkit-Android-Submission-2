@@ -6,13 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import me.daffakurnia.android.githubusers.R
-import me.daffakurnia.android.githubusers.database.Favorite
 import me.daffakurnia.android.githubusers.dataclass.DataUser
-import me.daffakurnia.android.githubusers.helper.FavoriteDiffCallback
 import me.daffakurnia.android.githubusers.ui.detail.DetailActivity
 
 class ListUserAdapter(private val dataUser: ArrayList<DataUser>) :

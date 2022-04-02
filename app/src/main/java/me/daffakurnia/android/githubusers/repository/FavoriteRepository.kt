@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData
 import me.daffakurnia.android.githubusers.database.Favorite
 import me.daffakurnia.android.githubusers.database.FavoriteDao
 import me.daffakurnia.android.githubusers.database.FavoriteRoomDatabase
-import me.daffakurnia.android.githubusers.dataclass.DataUser
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
