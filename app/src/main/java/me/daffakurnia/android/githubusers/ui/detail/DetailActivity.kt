@@ -24,7 +24,7 @@ import retrofit2.Response
 class DetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailBinding
-    private var favorite: Favorite? = null
+    private lateinit var favorite: Favorite
     private lateinit var favoriteViewModel: FavoriteViewModel
 
     private var isExist = false
@@ -36,15 +36,15 @@ class DetailActivity : AppCompatActivity() {
         favoriteViewModel = obtainViewModel(this@DetailActivity)
 
         favoriteViewModel.getFavorite(intent.getStringExtra(USERNAME)!!).observe(this) { userList ->
-            if (userList.isNotEmpty()) {
+            if (userList != null) {
                 isExist = true
+                favorite = userList
                 binding.favoriteButton.setImageResource(R.drawable.ic_baseline_favorite_24)
             } else {
+                favorite = Favorite()
                 binding.favoriteButton.setImageResource(R.drawable.ic_baseline_favorite_border_24)
             }
         }
-
-        favorite = Favorite()
 
         val userDetail = intent.getStringExtra(USERNAME)
 
@@ -71,15 +71,17 @@ class DetailActivity : AppCompatActivity() {
                 favorite?.url = url
                 favorite?.avatar_url = avatarUrl
                 favorite?.date = DateHelper.getCurrentDate()
-                if (isExist) {
-                    favoriteViewModel.update(favorite as Favorite)
-                    Toast.makeText(this, "Data added", Toast.LENGTH_SHORT).show()
-                } else {
-                    favoriteViewModel.insert(favorite as Favorite)
-                    binding.favoriteButton.setImageResource(R.drawable.ic_baseline_favorite_24)
-                    Toast.makeText(this, "Data added", Toast.LENGTH_SHORT).show()
-                }
             }
+            if (isExist) {
+                favoriteViewModel.delete(favorite as Favorite)
+                binding.favoriteButton.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+                Toast.makeText(this, "Data deleted", Toast.LENGTH_SHORT).show()
+            } else {
+                favoriteViewModel.insert(favorite as Favorite)
+                binding.favoriteButton.setImageResource(R.drawable.ic_baseline_favorite_24)
+                Toast.makeText(this, "Data added", Toast.LENGTH_SHORT).show()
+            }
+
         }
     }
 

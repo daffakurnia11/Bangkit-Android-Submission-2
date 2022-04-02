@@ -11,7 +11,7 @@ class FavoriteViewModel(application: Application) : ViewModel() {
 
     fun getAllFavorite(): LiveData<List<Favorite>> = mFavoriteRepository.getAllFavorite()
 
-    fun getFavorite(username: String): LiveData<List<Favorite>> = mFavoriteRepository.getFavorite(username)
+    fun getFavorite(username: String): LiveData<Favorite> = mFavoriteRepository.getFavorite(username)
 
     fun insert(favorite: Favorite) {
         mFavoriteRepository.insert(favorite)

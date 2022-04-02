@@ -18,16 +18,6 @@ import me.daffakurnia.android.githubusers.ui.detail.DetailActivity
 class ListUserAdapter(private val dataUser: ArrayList<DataUser>) :
     RecyclerView.Adapter<ListUserAdapter.ListViewHolder>() {
 
-    private val listFavorites = ArrayList<Favorite>()
-
-    fun setListFavorites(listFavorite: List<Favorite>) {
-        val diffCallback = FavoriteDiffCallback(this.listFavorites, listFavorites)
-        val diffResult = DiffUtil.calculateDiff(diffCallback)
-        this.listFavorites.clear()
-        this.listFavorites.addAll(listFavorite)
-        diffResult.dispatchUpdatesTo(this)
-    }
-
     class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var imgUser: ImageView = itemView.findViewById(R.id.img_user)
         var textUsername: TextView = itemView.findViewById(R.id.text_username)
