@@ -9,25 +9,25 @@ import retrofit2.http.*
 
 interface ApiService {
     @GET("search/users")
-    @Headers("Authorization: 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")
+    @Headers("Authorization: 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")
     fun getAccount(
         @Query("q") id: String
     ): Call<UserSearchResponse>
 
     @GET("users/{username}")
-    @Headers("Authorization: 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")
+    @Headers("Authorization: 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")
     fun getDetail(
         @Path("username") username: String
     ): Call<UserDetailResponse>
 
     @GET("users/{username}/followers")
-    @Headers("Authorization: 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")
+    @Headers("Authorization: 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")
     fun getFollowers(
         @Path("username") username: String
     ): Call<List<UserFollowersResponse>>
 
     @GET("users/{username}/following")
-    @Headers("Authorization: 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")
+    @Headers("Authorization: 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")
     fun getFollowing(
         @Path("username") username: String
     ): Call<List<UserFollowingResponse>>

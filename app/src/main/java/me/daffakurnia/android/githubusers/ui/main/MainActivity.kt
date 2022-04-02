@@ -20,6 +20,7 @@ import me.daffakurnia.android.githubusers.response.ItemsItem
 import me.daffakurnia.android.githubusers.response.UserSearchResponse
 import me.daffakurnia.android.githubusers.databinding.ActivityMainBinding
 import me.daffakurnia.android.githubusers.ui.favorite.FavoriteActivity
+import me.daffakurnia.android.githubusers.ui.settings.SettingsActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -124,6 +125,10 @@ class MainActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.favorite_menu -> {
                 startActivity(Intent(this, FavoriteActivity::class.java))
+                true
+            }
+            R.id.settings_menu -> {
+                startActivity(Intent(this, SettingsActivity::class.java))
                 true
             }
             else -> true

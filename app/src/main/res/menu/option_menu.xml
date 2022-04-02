@@ -9,7 +9,7 @@
         app:showAsAction="collapseActionView|ifRoom" />
     <group android:menuCategory="container">
         <item
-            android:id="@+id/first_menu"
+            android:id="@+id/settings_menu"
             android:icon="@drawable/ic_baseline_settings_24"
             android:title="@string/settings_text"
             app:showAsAction="ifRoom" />
