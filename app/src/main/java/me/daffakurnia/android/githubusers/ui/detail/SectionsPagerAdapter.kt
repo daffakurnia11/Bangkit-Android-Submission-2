@@ -1,9 +1,11 @@
-package me.daffakurnia.android.githubusers
+package me.daffakurnia.android.githubusers.ui.detail
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import me.daffakurnia.android.githubusers.ui.detail.FollowersFragment
+import me.daffakurnia.android.githubusers.ui.detail.FollowingFragment
 
 class SectionsPagerAdapter(activity: AppCompatActivity, data: Bundle) :
     FragmentStateAdapter(activity) {

@@ -1,4 +1,4 @@
-package me.daffakurnia.android.githubusers.API
+package me.daffakurnia.android.githubusers.api
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

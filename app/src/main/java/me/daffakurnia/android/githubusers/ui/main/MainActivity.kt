@@ -1,4 +1,4 @@
-package me.daffakurnia.android.githubusers
+package me.daffakurnia.android.githubusers.ui.main
 
 import android.app.SearchManager
 import android.content.Context
@@ -11,10 +11,11 @@ import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import me.daffakurnia.android.githubusers.API.ApiConfig
-import me.daffakurnia.android.githubusers.DataClass.DataUser
-import me.daffakurnia.android.githubusers.Response.ItemsItem
-import me.daffakurnia.android.githubusers.Response.UserSearchResponse
+import me.daffakurnia.android.githubusers.R
+import me.daffakurnia.android.githubusers.api.ApiConfig
+import me.daffakurnia.android.githubusers.dataclass.DataUser
+import me.daffakurnia.android.githubusers.response.ItemsItem
+import me.daffakurnia.android.githubusers.response.UserSearchResponse
 import me.daffakurnia.android.githubusers.databinding.ActivityMainBinding
 import retrofit2.Call
 import retrofit2.Callback

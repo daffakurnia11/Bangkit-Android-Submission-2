@@ -1,9 +1,9 @@
-package me.daffakurnia.android.githubusers.API
+package me.daffakurnia.android.githubusers.api
 
-import me.daffakurnia.android.githubusers.Response.UserDetailResponse
-import me.daffakurnia.android.githubusers.Response.UserFollowersResponse
-import me.daffakurnia.android.githubusers.Response.UserFollowingResponse
-import me.daffakurnia.android.githubusers.Response.UserSearchResponse
+import me.daffakurnia.android.githubusers.response.UserDetailResponse
+import me.daffakurnia.android.githubusers.response.UserFollowersResponse
+import me.daffakurnia.android.githubusers.response.UserFollowingResponse
+import me.daffakurnia.android.githubusers.response.UserSearchResponse
 import retrofit2.Call
 import retrofit2.http.*
 

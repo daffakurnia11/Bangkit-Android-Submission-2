@@ -16,4 +16,6 @@
     <string name="default_location">No Location</string>
     <string name="default_company">No Company</string>
     <string name="default_value">00</string>
+
+    <string name="favorite_text">Favorites</string>
 </resources>

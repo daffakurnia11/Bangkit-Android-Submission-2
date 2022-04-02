@@ -1,4 +1,4 @@
-package me.daffakurnia.android.githubusers.DataClass
+package me.daffakurnia.android.githubusers.dataclass
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

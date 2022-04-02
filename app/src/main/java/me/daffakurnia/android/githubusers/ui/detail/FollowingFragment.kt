@@ -1,4 +1,4 @@
-package me.daffakurnia.android.githubusers
+package me.daffakurnia.android.githubusers.ui.detail
 
 import android.content.res.Configuration
 import android.os.Bundle
@@ -9,23 +9,25 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import me.daffakurnia.android.githubusers.API.ApiConfig
-import me.daffakurnia.android.githubusers.DataClass.DataUser
-import me.daffakurnia.android.githubusers.Response.UserFollowersResponse
-import me.daffakurnia.android.githubusers.databinding.FragmentFollowersBinding
+import me.daffakurnia.android.githubusers.ui.main.ListUserAdapter
+import me.daffakurnia.android.githubusers.R
+import me.daffakurnia.android.githubusers.api.ApiConfig
+import me.daffakurnia.android.githubusers.dataclass.DataUser
+import me.daffakurnia.android.githubusers.response.UserFollowingResponse
+import me.daffakurnia.android.githubusers.databinding.FragmentFollowingBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class FollowersFragment : Fragment() {
+class FollowingFragment : Fragment() {
 
-    private lateinit var binding: FragmentFollowersBinding
+    private lateinit var binding: FragmentFollowingBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_followers, container, false)
+        return inflater.inflate(R.layout.fragment_following, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -33,29 +35,29 @@ class FollowersFragment : Fragment() {
 
         val username = arguments?.getString(USERNAME).toString()
 
-        binding = FragmentFollowersBinding.bind(view)
+        binding = FragmentFollowingBinding.bind(view)
 
-        getFollowers(username)
+        getFollowing(username)
     }
 
-    private fun getFollowers(username: String) {
+    private fun getFollowing(username: String) {
         showProgressbar(true)
-        val client = ApiConfig.getApiService().getFollowers(username)
-        client.enqueue(object : Callback<List<UserFollowersResponse>> {
+        val client = ApiConfig.getApiService().getFollowing(username)
+        client.enqueue(object : Callback<List<UserFollowingResponse>> {
             override fun onResponse(
-                call: Call<List<UserFollowersResponse>>,
-                response: Response<List<UserFollowersResponse>>
+                call: Call<List<UserFollowingResponse>>,
+                response: Response<List<UserFollowingResponse>>
             ) {
                 if (response.isSuccessful) {
                     showProgressbar(false)
                     val responseBody = response.body()
                     if (responseBody != null) {
-                        getFollowersData(responseBody)
+                        getFollowingData(responseBody)
                     }
                 }
             }
 
-            override fun onFailure(call: Call<List<UserFollowersResponse>>, t: Throwable) {
+            override fun onFailure(call: Call<List<UserFollowingResponse>>, t: Throwable) {
                 Log.d("Failure", t.message, t)
             }
         })
@@ -69,7 +71,7 @@ class FollowersFragment : Fragment() {
         }
     }
 
-    private fun getFollowersData(responseBody: List<UserFollowersResponse>) {
+    private fun getFollowingData(responseBody: List<UserFollowingResponse>) {
         val userList = ArrayList<DataUser>()
 
         for (item in responseBody) {
@@ -84,15 +86,15 @@ class FollowersFragment : Fragment() {
         val adapter = ListUserAdapter(userList)
 
         binding.apply {
-            listFollowers.setHasFixedSize(true)
+            listFollowing.setHasFixedSize(true)
             if (activity?.resources?.configuration?.orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 val layoutManager = GridLayoutManager(activity, 2)
-                listFollowers.layoutManager = layoutManager
+                listFollowing.layoutManager = layoutManager
             } else {
                 val layoutManager = LinearLayoutManager(activity)
-                listFollowers.layoutManager = layoutManager
+                listFollowing.layoutManager = layoutManager
             }
-            listFollowers.adapter = adapter
+            listFollowing.adapter = adapter
         }
     }
 
