@@ -2,11 +2,13 @@ package me.daffakurnia.android.githubusers.ui.main
 
 import android.app.SearchManager
 import android.content.Context
+import android.content.Intent
 import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.GridLayoutManager
@@ -17,6 +19,7 @@ import me.daffakurnia.android.githubusers.dataclass.DataUser
 import me.daffakurnia.android.githubusers.response.ItemsItem
 import me.daffakurnia.android.githubusers.response.UserSearchResponse
 import me.daffakurnia.android.githubusers.databinding.ActivityMainBinding
+import me.daffakurnia.android.githubusers.ui.favorite.FavoriteActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -115,6 +118,16 @@ class MainActivity : AppCompatActivity() {
             }
         })
         return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.favorite_menu -> {
+                startActivity(Intent(this, FavoriteActivity::class.java))
+                true
+            }
+            else -> true
+        }
     }
 
     companion object {

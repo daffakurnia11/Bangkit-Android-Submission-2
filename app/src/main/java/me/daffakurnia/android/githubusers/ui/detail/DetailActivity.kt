@@ -16,7 +16,7 @@ import me.daffakurnia.android.githubusers.response.UserDetailResponse
 import me.daffakurnia.android.githubusers.databinding.ActivityDetailBinding
 import me.daffakurnia.android.githubusers.helper.DateHelper
 import me.daffakurnia.android.githubusers.helper.ViewModelFactory
-import me.daffakurnia.android.githubusers.ui.favorite.FavoriteAddUpdateViewModel
+import me.daffakurnia.android.githubusers.ui.favorite.FavoriteViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -25,13 +25,25 @@ class DetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailBinding
     private var favorite: Favorite? = null
-    private lateinit var favoriteAddUpdateViewModel: FavoriteAddUpdateViewModel
+    private lateinit var favoriteViewModel: FavoriteViewModel
+
+    private var isExist = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        favoriteAddUpdateViewModel = obtainViewModel(this@DetailActivity)
+        favoriteViewModel = obtainViewModel(this@DetailActivity)
+
+        favoriteViewModel.getFavorite(intent.getStringExtra(USERNAME)!!).observe(this) { userList ->
+            if (userList.isNotEmpty()) {
+                isExist = true
+                binding.favoriteButton.setImageResource(R.drawable.ic_baseline_favorite_24)
+            } else {
+                binding.favoriteButton.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+            }
+        }
+
         favorite = Favorite()
 
         val userDetail = intent.getStringExtra(USERNAME)
@@ -59,15 +71,21 @@ class DetailActivity : AppCompatActivity() {
                 favorite?.url = url
                 favorite?.avatar_url = avatarUrl
                 favorite?.date = DateHelper.getCurrentDate()
-                favoriteAddUpdateViewModel.insert(favorite as Favorite)
+                if (isExist) {
+                    favoriteViewModel.update(favorite as Favorite)
+                    Toast.makeText(this, "Data added", Toast.LENGTH_SHORT).show()
+                } else {
+                    favoriteViewModel.insert(favorite as Favorite)
+                    binding.favoriteButton.setImageResource(R.drawable.ic_baseline_favorite_24)
+                    Toast.makeText(this, "Data added", Toast.LENGTH_SHORT).show()
+                }
             }
-            Toast.makeText(this, "Data added", Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun obtainViewModel(activity: AppCompatActivity): FavoriteAddUpdateViewModel {
+    private fun obtainViewModel(activity: AppCompatActivity): FavoriteViewModel {
         val factory = ViewModelFactory.getInstance(activity.application)
-        return ViewModelProvider(activity, factory).get(FavoriteAddUpdateViewModel::class.java)
+        return ViewModelProvider(activity, factory)[FavoriteViewModel::class.java]
     }
 
     private fun getDetailUser(userDetail: String?) {

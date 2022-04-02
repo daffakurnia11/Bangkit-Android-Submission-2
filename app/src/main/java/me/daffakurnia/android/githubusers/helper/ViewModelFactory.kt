@@ -3,7 +3,6 @@ package me.daffakurnia.android.githubusers.helper
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import me.daffakurnia.android.githubusers.ui.favorite.FavoriteAddUpdateViewModel
 import me.daffakurnia.android.githubusers.ui.favorite.FavoriteViewModel
 import java.lang.IllegalArgumentException
 
@@ -14,9 +13,7 @@ class ViewModelFactory private constructor(private val mApplication: Application
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(FavoriteViewModel::class.java)) {
             return FavoriteViewModel(mApplication) as T
-        } else if (modelClass.isAssignableFrom(FavoriteAddUpdateViewModel::class.java)) {
-            return FavoriteAddUpdateViewModel(mApplication) as T
-        }
+        } 
         throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
     }
 
