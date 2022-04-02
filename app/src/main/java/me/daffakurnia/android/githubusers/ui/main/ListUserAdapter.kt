@@ -6,14 +6,28 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import me.daffakurnia.android.githubusers.R
+import me.daffakurnia.android.githubusers.database.Favorite
 import me.daffakurnia.android.githubusers.dataclass.DataUser
+import me.daffakurnia.android.githubusers.helper.FavoriteDiffCallback
 import me.daffakurnia.android.githubusers.ui.detail.DetailActivity
 
 class ListUserAdapter(private val dataUser: ArrayList<DataUser>) :
     RecyclerView.Adapter<ListUserAdapter.ListViewHolder>() {
+
+    private val listFavorites = ArrayList<Favorite>()
+
+    fun setListFavorites(listFavorite: List<Favorite>) {
+        val diffCallback = FavoriteDiffCallback(this.listFavorites, listFavorites)
+        val diffResult = DiffUtil.calculateDiff(diffCallback)
+        this.listFavorites.clear()
+        this.listFavorites.addAll(listFavorite)
+        diffResult.dispatchUpdatesTo(this)
+    }
+
     class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var imgUser: ImageView = itemView.findViewById(R.id.img_user)
         var textUsername: TextView = itemView.findViewById(R.id.text_username)
@@ -37,6 +51,8 @@ class ListUserAdapter(private val dataUser: ArrayList<DataUser>) :
         holder.imgUser.setOnClickListener {
             val intent = Intent(holder.itemView.context, DetailActivity::class.java)
             intent.putExtra(DetailActivity.USERNAME, login)
+            intent.putExtra(DetailActivity.URL, url)
+            intent.putExtra(DetailActivity.AVATAR, avatar_url)
             holder.itemView.context.startActivity(intent)
         }
     }
