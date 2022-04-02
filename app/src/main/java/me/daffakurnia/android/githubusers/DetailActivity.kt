@@ -56,15 +56,17 @@ class DetailActivity : AppCompatActivity() {
                             .load(responseBody.avatarUrl)
                             .circleCrop()
                             .into(binding.imgDetailUser)
-                        binding.textDetailUsername.text = responseBody.login
-                        binding.textDetailName.text = responseBody.name
-                        binding.textDetailLocation.text = (responseBody.location
-                            ?: resources.getString(R.string.default_location)).toString()
-                        binding.textDetailCompany.text = (responseBody.company
-                            ?: resources.getString(R.string.default_company)).toString()
-                        binding.textNumberFollowers.text = responseBody.followers.toString()
-                        binding.textNumberFollowing.text = responseBody.following.toString()
-                        binding.textNumberRepository.text = responseBody.publicRepos.toString()
+                        binding.apply {
+                            textDetailUsername.text = responseBody.login
+                            textDetailName.text = responseBody.name
+                            textDetailLocation.text = (responseBody.location
+                                ?: resources.getString(R.string.default_location)).toString()
+                            textDetailCompany.text = (responseBody.company
+                                ?: resources.getString(R.string.default_company)).toString()
+                            textNumberFollowers.text = responseBody.followers.toString()
+                            textNumberFollowing.text = responseBody.following.toString()
+                            textNumberRepository.text = responseBody.publicRepos.toString()
+                        }
                     }
                 } else {
                     Log.e(this@DetailActivity.toString(), "onFailure: ${response.message()}")
