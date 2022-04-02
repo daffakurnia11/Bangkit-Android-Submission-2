@@ -75,11 +75,19 @@ class DetailActivity : AppCompatActivity() {
             if (isExist) {
                 favoriteViewModel.delete(favorite)
                 binding.favoriteButton.setImageResource(R.drawable.ic_baseline_favorite_border_24)
-                Toast.makeText(this, "Data deleted", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this,
+                    resources.getString(R.string.remove_favorite),
+                    Toast.LENGTH_SHORT
+                ).show()
             } else {
                 favoriteViewModel.insert(favorite)
                 binding.favoriteButton.setImageResource(R.drawable.ic_baseline_favorite_24)
-                Toast.makeText(this, "Data added", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this,
+                    resources.getString(R.string.add_favorite),
+                    Toast.LENGTH_SHORT
+                ).show()
             }
 
         }

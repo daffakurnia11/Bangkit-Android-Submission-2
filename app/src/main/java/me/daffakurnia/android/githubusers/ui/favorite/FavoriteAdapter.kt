@@ -41,7 +41,7 @@ class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.FavoriteViewHolder>
         fun bind(favorite: Favorite) {
             with(binding) {
                 textUsername.text = favorite.login
-                textUserUrl.text = favorite.login
+                textUserUrl.text = favorite.url
                 Glide.with(this.imgUser)
                     .load(favorite.avatar_url)
                     .circleCrop()
@@ -49,7 +49,7 @@ class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.FavoriteViewHolder>
                 imgUser.setOnClickListener {
                     val intent = Intent(it.context, DetailActivity::class.java)
                     intent.putExtra(DetailActivity.USERNAME, favorite.login)
-                    intent.putExtra(DetailActivity.URL, favorite.login)
+                    intent.putExtra(DetailActivity.URL, favorite.url)
                     intent.putExtra(DetailActivity.AVATAR, favorite.avatar_url)
                     it.context.startActivity(intent)
                 }

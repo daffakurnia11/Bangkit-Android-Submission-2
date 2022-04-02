@@ -20,4 +20,8 @@
     <string name="favorite_text">Favorites</string>
 
     <string name="dark_mode">Dark Mode</string>
+    <string name="title_favorite_activity">My Favorite Users</string>
+    <string name="remove_favorite">Removed from Favorite</string>
+    <string name="add_favorite">Added to Favorite</string>
+    <string name="title_settings_activity">Settings</string>
 </resources>

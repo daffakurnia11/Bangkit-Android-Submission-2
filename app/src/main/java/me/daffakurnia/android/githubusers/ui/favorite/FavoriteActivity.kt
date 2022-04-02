@@ -28,6 +28,9 @@ class FavoriteActivity : AppCompatActivity() {
             }
         }
 
+        supportActionBar?.title = resources.getString(R.string.title_favorite_activity)
+        supportActionBar?.elevation = 0f
+
         adapter = FavoriteAdapter()
         binding?.listFavorites?.layoutManager = LinearLayoutManager(this)
         binding?.listFavorites?.setHasFixedSize(true)
