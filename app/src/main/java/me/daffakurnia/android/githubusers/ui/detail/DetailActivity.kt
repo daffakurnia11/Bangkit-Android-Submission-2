@@ -67,17 +67,17 @@ class DetailActivity : AppCompatActivity() {
             val url = intent.getStringExtra(URL)
             val avatarUrl = intent.getStringExtra(AVATAR)
             favorite.let { favorite ->
-                favorite?.login = login
-                favorite?.url = url
-                favorite?.avatar_url = avatarUrl
-                favorite?.date = DateHelper.getCurrentDate()
+                favorite.login = login
+                favorite.url = url
+                favorite.avatar_url = avatarUrl
+                favorite.date = DateHelper.getCurrentDate()
             }
             if (isExist) {
-                favoriteViewModel.delete(favorite as Favorite)
+                favoriteViewModel.delete(favorite)
                 binding.favoriteButton.setImageResource(R.drawable.ic_baseline_favorite_border_24)
                 Toast.makeText(this, "Data deleted", Toast.LENGTH_SHORT).show()
             } else {
-                favoriteViewModel.insert(favorite as Favorite)
+                favoriteViewModel.insert(favorite)
                 binding.favoriteButton.setImageResource(R.drawable.ic_baseline_favorite_24)
                 Toast.makeText(this, "Data added", Toast.LENGTH_SHORT).show()
             }

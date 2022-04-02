@@ -36,7 +36,8 @@ class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.FavoriteViewHolder>
 
     override fun getItemCount(): Int = listFavorites.size
 
-    inner class FavoriteViewHolder(private val binding: ItemUserBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class FavoriteViewHolder(private val binding: ItemUserBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(favorite: Favorite) {
             with(binding) {
                 textUsername.text = favorite.login
