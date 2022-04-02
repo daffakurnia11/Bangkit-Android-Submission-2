@@ -18,10 +18,6 @@ class FavoriteViewModel(application: Application) : ViewModel() {
         mFavoriteRepository.insert(favorite)
     }
 
-    fun update(favorite: Favorite) {
-        mFavoriteRepository.update(favorite)
-    }
-
     fun delete(favorite: Favorite) {
         mFavoriteRepository.delete(favorite)
     }

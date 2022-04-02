@@ -8,9 +8,6 @@ interface FavoriteDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insert(favorite: Favorite)
 
-    @Update
-    fun update(favorite: Favorite)
-
     @Delete
     fun delete(favorite: Favorite)
 
