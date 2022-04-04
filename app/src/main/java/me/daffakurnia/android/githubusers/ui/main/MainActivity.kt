@@ -10,7 +10,12 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SearchView
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import me.daffakurnia.android.githubusers.R
@@ -20,10 +25,12 @@ import me.daffakurnia.android.githubusers.response.ItemsItem
 import me.daffakurnia.android.githubusers.response.UserSearchResponse
 import me.daffakurnia.android.githubusers.databinding.ActivityMainBinding
 import me.daffakurnia.android.githubusers.ui.favorite.FavoriteActivity
-import me.daffakurnia.android.githubusers.ui.settings.SettingsActivity
+import me.daffakurnia.android.githubusers.ui.settings.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+
+private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
 class MainActivity : AppCompatActivity() {
 
@@ -40,6 +47,18 @@ class MainActivity : AppCompatActivity() {
         } else {
             val layoutManager = LinearLayoutManager(this)
             binding.listUsers.layoutManager = layoutManager
+        }
+
+        val pref = SettingPreferences.getInstance(dataStore)
+        val settingViewModel =
+            ViewModelProvider(this, SettingViewModelFactory(pref))[SettingViewModel::class.java]
+
+        settingViewModel.getThemeSettings().observe(this) { isDarkModeActive: Boolean ->
+            if (isDarkModeActive) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
         }
 
         findUsers()
